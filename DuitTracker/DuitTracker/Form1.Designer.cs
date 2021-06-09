@@ -125,12 +125,6 @@ namespace DuitTracker
             this.cmbSubtipe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSubtipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbSubtipe.FormattingEnabled = true;
-            this.cmbSubtipe.Items.AddRange(new object[] {
-            "Uang Bulanan",
-            "Hibah",
-            "Penghasilan",
-            "Penghargaan",
-            "Lainnya"});
             this.cmbSubtipe.Location = new System.Drawing.Point(0, 0);
             this.cmbSubtipe.Name = "cmbSubtipe";
             this.cmbSubtipe.Size = new System.Drawing.Size(116, 21);
@@ -177,6 +171,7 @@ namespace DuitTracker
             this.cmbTipe.Name = "cmbTipe";
             this.cmbTipe.Size = new System.Drawing.Size(116, 21);
             this.cmbTipe.TabIndex = 8;
+            this.cmbTipe.SelectedIndexChanged += new System.EventHandler(this.cmbTipe_SelectedIndexChanged);
             // 
             // dtpTanggal
             // 

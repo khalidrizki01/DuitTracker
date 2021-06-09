@@ -11,7 +11,7 @@ namespace DuitTracker
     {
         public int Id { get; set; }
 
-        public long Nominal { get; set; }
+        public int Nominal { get; set; }
 
         public int Tipe { get; set; }
 
