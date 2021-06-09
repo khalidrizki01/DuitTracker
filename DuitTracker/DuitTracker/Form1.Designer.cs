@@ -237,9 +237,12 @@ namespace DuitTracker
             // 
             // dgvSejarahTransaksi
             // 
+            this.dgvSejarahTransaksi.AllowUserToAddRows = false;
+            this.dgvSejarahTransaksi.AllowUserToDeleteRows = false;
             this.dgvSejarahTransaksi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSejarahTransaksi.Location = new System.Drawing.Point(12, 42);
             this.dgvSejarahTransaksi.Name = "dgvSejarahTransaksi";
+            this.dgvSejarahTransaksi.ReadOnly = true;
             this.dgvSejarahTransaksi.Size = new System.Drawing.Size(326, 150);
             this.dgvSejarahTransaksi.TabIndex = 1;
             this.dgvSejarahTransaksi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSejarahTransaksi_CellClick);
