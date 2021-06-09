@@ -29,6 +29,7 @@ namespace DuitTracker
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gbBuatBaru = new System.Windows.Forms.GroupBox();
             this.btnBatal = new System.Windows.Forms.Button();
             this.btnHapus = new System.Windows.Forms.Button();
@@ -53,19 +54,18 @@ namespace DuitTracker
             this.lblSaldo = new System.Windows.Forms.Label();
             this.lblTotalPengeluaran = new System.Windows.Forms.Label();
             this.lblTotalPemasukan = new System.Windows.Forms.Label();
-            this.gbFilter = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblBulan = new System.Windows.Forms.Label();
             this.btnBulanSebelum = new System.Windows.Forms.Button();
             this.btnBulanSetelah = new System.Windows.Forms.Button();
             this.btnKeBulanSkrgKanan = new System.Windows.Forms.Button();
             this.btnKeBulanSkrgKiri = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gbBuatBaru.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSejarahTransaksi)).BeginInit();
             this.panel2.SuspendLayout();
-            this.gbFilter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbBuatBaru
@@ -83,16 +83,16 @@ namespace DuitTracker
             this.gbBuatBaru.Controls.Add(this.lblTipe);
             this.gbBuatBaru.Controls.Add(this.lblKeterangan);
             this.gbBuatBaru.Controls.Add(this.lblNominal);
-            this.gbBuatBaru.Location = new System.Drawing.Point(344, 97);
+            this.gbBuatBaru.Location = new System.Drawing.Point(3, 195);
             this.gbBuatBaru.Name = "gbBuatBaru";
-            this.gbBuatBaru.Size = new System.Drawing.Size(221, 214);
+            this.gbBuatBaru.Size = new System.Drawing.Size(393, 150);
             this.gbBuatBaru.TabIndex = 0;
             this.gbBuatBaru.TabStop = false;
             this.gbBuatBaru.Text = "Transaksi Baru";
             // 
             // btnBatal
             // 
-            this.btnBatal.Location = new System.Drawing.Point(147, 185);
+            this.btnBatal.Location = new System.Drawing.Point(247, 115);
             this.btnBatal.Name = "btnBatal";
             this.btnBatal.Size = new System.Drawing.Size(64, 23);
             this.btnBatal.TabIndex = 12;
@@ -102,7 +102,7 @@ namespace DuitTracker
             // 
             // btnHapus
             // 
-            this.btnHapus.Location = new System.Drawing.Point(81, 185);
+            this.btnHapus.Location = new System.Drawing.Point(181, 115);
             this.btnHapus.Name = "btnHapus";
             this.btnHapus.Size = new System.Drawing.Size(64, 23);
             this.btnHapus.TabIndex = 11;
@@ -114,7 +114,7 @@ namespace DuitTracker
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.cmbSubtipe);
-            this.panel3.Location = new System.Drawing.Point(86, 77);
+            this.panel3.Location = new System.Drawing.Point(58, 79);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(118, 21);
             this.panel3.TabIndex = 9;
@@ -133,7 +133,7 @@ namespace DuitTracker
             // lblSubtipe
             // 
             this.lblSubtipe.AutoSize = true;
-            this.lblSubtipe.Location = new System.Drawing.Point(13, 81);
+            this.lblSubtipe.Location = new System.Drawing.Point(7, 83);
             this.lblSubtipe.Name = "lblSubtipe";
             this.lblSubtipe.Size = new System.Drawing.Size(49, 13);
             this.lblSubtipe.TabIndex = 10;
@@ -141,7 +141,7 @@ namespace DuitTracker
             // 
             // btnBuatTransaksi
             // 
-            this.btnBuatTransaksi.Location = new System.Drawing.Point(15, 185);
+            this.btnBuatTransaksi.Location = new System.Drawing.Point(115, 115);
             this.btnBuatTransaksi.Name = "btnBuatTransaksi";
             this.btnBuatTransaksi.Size = new System.Drawing.Size(64, 23);
             this.btnBuatTransaksi.TabIndex = 9;
@@ -153,7 +153,7 @@ namespace DuitTracker
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.cmbTipe);
-            this.panel1.Location = new System.Drawing.Point(86, 50);
+            this.panel1.Location = new System.Drawing.Point(58, 52);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(118, 21);
             this.panel1.TabIndex = 2;
@@ -177,7 +177,7 @@ namespace DuitTracker
             // 
             this.dtpTanggal.CustomFormat = "dd-MM-yyyy";
             this.dtpTanggal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTanggal.Location = new System.Drawing.Point(86, 153);
+            this.dtpTanggal.Location = new System.Drawing.Point(264, 77);
             this.dtpTanggal.MaxDate = new System.DateTime(2040, 12, 31, 0, 0, 0, 0);
             this.dtpTanggal.MinDate = new System.DateTime(2015, 1, 1, 0, 0, 0, 0);
             this.dtpTanggal.Name = "dtpTanggal";
@@ -186,7 +186,7 @@ namespace DuitTracker
             // 
             // tbKeterangan
             // 
-            this.tbKeterangan.Location = new System.Drawing.Point(86, 105);
+            this.tbKeterangan.Location = new System.Drawing.Point(264, 29);
             this.tbKeterangan.Multiline = true;
             this.tbKeterangan.Name = "tbKeterangan";
             this.tbKeterangan.Size = new System.Drawing.Size(118, 42);
@@ -194,7 +194,7 @@ namespace DuitTracker
             // 
             // tbNominal
             // 
-            this.tbNominal.Location = new System.Drawing.Point(86, 24);
+            this.tbNominal.Location = new System.Drawing.Point(58, 26);
             this.tbNominal.Name = "tbNominal";
             this.tbNominal.Size = new System.Drawing.Size(118, 20);
             this.tbNominal.TabIndex = 2;
@@ -202,7 +202,7 @@ namespace DuitTracker
             // lblTanggal
             // 
             this.lblTanggal.AutoSize = true;
-            this.lblTanggal.Location = new System.Drawing.Point(13, 159);
+            this.lblTanggal.Location = new System.Drawing.Point(191, 83);
             this.lblTanggal.Name = "lblTanggal";
             this.lblTanggal.Size = new System.Drawing.Size(52, 13);
             this.lblTanggal.TabIndex = 5;
@@ -211,7 +211,7 @@ namespace DuitTracker
             // lblTipe
             // 
             this.lblTipe.AutoSize = true;
-            this.lblTipe.Location = new System.Drawing.Point(13, 54);
+            this.lblTipe.Location = new System.Drawing.Point(7, 56);
             this.lblTipe.Name = "lblTipe";
             this.lblTipe.Size = new System.Drawing.Size(34, 13);
             this.lblTipe.TabIndex = 4;
@@ -220,7 +220,7 @@ namespace DuitTracker
             // lblKeterangan
             // 
             this.lblKeterangan.AutoSize = true;
-            this.lblKeterangan.Location = new System.Drawing.Point(13, 103);
+            this.lblKeterangan.Location = new System.Drawing.Point(191, 27);
             this.lblKeterangan.Name = "lblKeterangan";
             this.lblKeterangan.Size = new System.Drawing.Size(68, 13);
             this.lblKeterangan.TabIndex = 3;
@@ -229,7 +229,7 @@ namespace DuitTracker
             // lblNominal
             // 
             this.lblNominal.AutoSize = true;
-            this.lblNominal.Location = new System.Drawing.Point(12, 27);
+            this.lblNominal.Location = new System.Drawing.Point(6, 29);
             this.lblNominal.Name = "lblNominal";
             this.lblNominal.Size = new System.Drawing.Size(51, 13);
             this.lblNominal.TabIndex = 2;
@@ -240,10 +240,10 @@ namespace DuitTracker
             this.dgvSejarahTransaksi.AllowUserToAddRows = false;
             this.dgvSejarahTransaksi.AllowUserToDeleteRows = false;
             this.dgvSejarahTransaksi.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSejarahTransaksi.Location = new System.Drawing.Point(12, 42);
+            this.dgvSejarahTransaksi.Location = new System.Drawing.Point(18, 39);
             this.dgvSejarahTransaksi.Name = "dgvSejarahTransaksi";
             this.dgvSejarahTransaksi.ReadOnly = true;
-            this.dgvSejarahTransaksi.Size = new System.Drawing.Size(326, 150);
+            this.dgvSejarahTransaksi.Size = new System.Drawing.Size(543, 150);
             this.dgvSejarahTransaksi.TabIndex = 1;
             this.dgvSejarahTransaksi.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSejarahTransaksi_CellClick);
             // 
@@ -256,15 +256,16 @@ namespace DuitTracker
             this.panel2.Controls.Add(this.lblSaldo);
             this.panel2.Controls.Add(this.lblTotalPengeluaran);
             this.panel2.Controls.Add(this.lblTotalPemasukan);
-            this.panel2.Location = new System.Drawing.Point(344, 12);
+            this.panel2.Location = new System.Drawing.Point(400, 200);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(221, 72);
+            this.panel2.Size = new System.Drawing.Size(173, 72);
             this.panel2.TabIndex = 2;
             // 
             // lblNilaiSaldo
             // 
             this.lblNilaiSaldo.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblNilaiSaldo.Location = new System.Drawing.Point(140, 50);
+            this.lblNilaiSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNilaiSaldo.Location = new System.Drawing.Point(99, 50);
             this.lblNilaiSaldo.Name = "lblNilaiSaldo";
             this.lblNilaiSaldo.Size = new System.Drawing.Size(64, 13);
             this.lblNilaiSaldo.TabIndex = 13;
@@ -274,7 +275,7 @@ namespace DuitTracker
             // lblNilaiTotalPengeluaran
             // 
             this.lblNilaiTotalPengeluaran.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblNilaiTotalPengeluaran.Location = new System.Drawing.Point(139, 31);
+            this.lblNilaiTotalPengeluaran.Location = new System.Drawing.Point(99, 31);
             this.lblNilaiTotalPengeluaran.Name = "lblNilaiTotalPengeluaran";
             this.lblNilaiTotalPengeluaran.Size = new System.Drawing.Size(64, 13);
             this.lblNilaiTotalPengeluaran.TabIndex = 12;
@@ -284,7 +285,7 @@ namespace DuitTracker
             // lblNilaiTotalPemasukan
             // 
             this.lblNilaiTotalPemasukan.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblNilaiTotalPemasukan.Location = new System.Drawing.Point(139, 11);
+            this.lblNilaiTotalPemasukan.Location = new System.Drawing.Point(99, 11);
             this.lblNilaiTotalPemasukan.Name = "lblNilaiTotalPemasukan";
             this.lblNilaiTotalPemasukan.Size = new System.Drawing.Size(64, 13);
             this.lblNilaiTotalPemasukan.TabIndex = 9;
@@ -296,7 +297,7 @@ namespace DuitTracker
             this.lblSaldo.AutoSize = true;
             this.lblSaldo.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.lblSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaldo.Location = new System.Drawing.Point(14, 50);
+            this.lblSaldo.Location = new System.Drawing.Point(3, 50);
             this.lblSaldo.Name = "lblSaldo";
             this.lblSaldo.Size = new System.Drawing.Size(47, 13);
             this.lblSaldo.TabIndex = 11;
@@ -305,7 +306,7 @@ namespace DuitTracker
             // lblTotalPengeluaran
             // 
             this.lblTotalPengeluaran.AutoSize = true;
-            this.lblTotalPengeluaran.Location = new System.Drawing.Point(14, 31);
+            this.lblTotalPengeluaran.Location = new System.Drawing.Point(3, 31);
             this.lblTotalPengeluaran.Name = "lblTotalPengeluaran";
             this.lblTotalPengeluaran.Size = new System.Drawing.Size(100, 13);
             this.lblTotalPengeluaran.TabIndex = 10;
@@ -314,36 +315,17 @@ namespace DuitTracker
             // lblTotalPemasukan
             // 
             this.lblTotalPemasukan.AutoSize = true;
-            this.lblTotalPemasukan.Location = new System.Drawing.Point(14, 11);
+            this.lblTotalPemasukan.Location = new System.Drawing.Point(3, 11);
             this.lblTotalPemasukan.Name = "lblTotalPemasukan";
             this.lblTotalPemasukan.Size = new System.Drawing.Size(96, 13);
             this.lblTotalPemasukan.TabIndex = 9;
             this.lblTotalPemasukan.Text = "Total Pemasukan :";
             // 
-            // gbFilter
-            // 
-            this.gbFilter.Controls.Add(this.label2);
-            this.gbFilter.Location = new System.Drawing.Point(12, 202);
-            this.gbFilter.Name = "gbFilter";
-            this.gbFilter.Size = new System.Drawing.Size(326, 52);
-            this.gbFilter.TabIndex = 3;
-            this.gbFilter.TabStop = false;
-            this.gbFilter.Text = "Filter";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(183, 17);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
-            // 
             // lblBulan
             // 
             this.lblBulan.AutoSize = true;
             this.lblBulan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBulan.Location = new System.Drawing.Point(129, 12);
+            this.lblBulan.Location = new System.Drawing.Point(244, 9);
             this.lblBulan.Name = "lblBulan";
             this.lblBulan.Size = new System.Drawing.Size(80, 20);
             this.lblBulan.TabIndex = 4;
@@ -354,7 +336,7 @@ namespace DuitTracker
             this.btnBulanSebelum.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnBulanSebelum.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBulanSebelum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBulanSebelum.Location = new System.Drawing.Point(91, 7);
+            this.btnBulanSebelum.Location = new System.Drawing.Point(225, 6);
             this.btnBulanSebelum.Name = "btnBulanSebelum";
             this.btnBulanSebelum.Size = new System.Drawing.Size(19, 29);
             this.btnBulanSebelum.TabIndex = 5;
@@ -367,7 +349,7 @@ namespace DuitTracker
             this.btnBulanSetelah.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnBulanSetelah.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBulanSetelah.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBulanSetelah.Location = new System.Drawing.Point(225, 9);
+            this.btnBulanSetelah.Location = new System.Drawing.Point(330, 6);
             this.btnBulanSetelah.Name = "btnBulanSetelah";
             this.btnBulanSetelah.Size = new System.Drawing.Size(19, 29);
             this.btnBulanSetelah.TabIndex = 6;
@@ -380,7 +362,7 @@ namespace DuitTracker
             this.btnKeBulanSkrgKanan.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnKeBulanSkrgKanan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeBulanSkrgKanan.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKeBulanSkrgKanan.Location = new System.Drawing.Point(250, 9);
+            this.btnKeBulanSkrgKanan.Location = new System.Drawing.Point(349, 6);
             this.btnKeBulanSkrgKanan.Name = "btnKeBulanSkrgKanan";
             this.btnKeBulanSkrgKanan.Size = new System.Drawing.Size(34, 29);
             this.btnKeBulanSkrgKanan.TabIndex = 7;
@@ -393,7 +375,7 @@ namespace DuitTracker
             this.btnKeBulanSkrgKiri.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnKeBulanSkrgKiri.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKeBulanSkrgKiri.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKeBulanSkrgKiri.Location = new System.Drawing.Point(60, 7);
+            this.btnKeBulanSkrgKiri.Location = new System.Drawing.Point(195, 6);
             this.btnKeBulanSkrgKiri.Name = "btnKeBulanSkrgKiri";
             this.btnKeBulanSkrgKiri.Size = new System.Drawing.Size(34, 29);
             this.btnKeBulanSkrgKiri.TabIndex = 8;
@@ -401,20 +383,31 @@ namespace DuitTracker
             this.btnKeBulanSkrgKiri.UseVisualStyleBackColor = true;
             this.btnKeBulanSkrgKiri.Click += new System.EventHandler(this.btnKeBulanSkrgKiri_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(454, 279);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(63, 66);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 314);
+            this.ClientSize = new System.Drawing.Size(577, 350);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnKeBulanSkrgKiri);
             this.Controls.Add(this.btnKeBulanSkrgKanan);
             this.Controls.Add(this.btnBulanSetelah);
             this.Controls.Add(this.btnBulanSebelum);
             this.Controls.Add(this.lblBulan);
-            this.Controls.Add(this.gbFilter);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvSejarahTransaksi);
             this.Controls.Add(this.gbBuatBaru);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.gbBuatBaru.ResumeLayout(false);
@@ -424,8 +417,7 @@ namespace DuitTracker
             ((System.ComponentModel.ISupportInitialize)(this.dgvSejarahTransaksi)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.gbFilter.ResumeLayout(false);
-            this.gbFilter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -448,7 +440,6 @@ namespace DuitTracker
         private System.Windows.Forms.Label lblTotalPemasukan;
         private System.Windows.Forms.Label lblSaldo;
         private System.Windows.Forms.Label lblTotalPengeluaran;
-        private System.Windows.Forms.GroupBox gbFilter;
         private System.Windows.Forms.Button btnBuatTransaksi;
         private System.Windows.Forms.Label lblNilaiSaldo;
         private System.Windows.Forms.Label lblNilaiTotalPengeluaran;
@@ -456,7 +447,6 @@ namespace DuitTracker
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ComboBox cmbSubtipe;
         private System.Windows.Forms.Label lblSubtipe;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblBulan;
         private System.Windows.Forms.Button btnBulanSebelum;
         private System.Windows.Forms.Button btnBulanSetelah;
@@ -464,6 +454,7 @@ namespace DuitTracker
         private System.Windows.Forms.Button btnKeBulanSkrgKiri;
         private System.Windows.Forms.Button btnBatal;
         private System.Windows.Forms.Button btnHapus;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

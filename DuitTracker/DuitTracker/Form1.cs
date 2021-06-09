@@ -72,27 +72,29 @@ namespace DuitTracker
             {
                 MessageBox.Show(ex.Message);
             }
-            //foreach (DataGridViewRow row in dgvSejarahTransaksi.Rows)
-            //{
-            //    try
-            //    {
-            //        Color color;
-            //        MessageBox.Show(row.Cells[0].Value.ToString());
-            //        string idstr = row.Cells[0].Value.ToString();
-            //        int id = Convert.ToInt32(idstr);
-            //        using (var db = new DuitDBModel())
-            //        {
-            //            var getTipe = db.Transaksis.SingleOrDefault(item => item.Id == id);
-            //            string warna = ConvertTipeKeWarna(getTipe.Tipe);
-            //            color = ColorTranslator.FromHtml(warna);
-            //        }
-            //        row.DefaultCellStyle.BackColor = color;
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        MessageBox.Show(ex.Message);
-            //    }
-            //}
+            foreach (DataGridViewRow row in dgvSejarahTransaksi.Rows)
+            {
+                try
+                {
+                    //Color color;
+                    string warna = ConvertTipeKeWarna(int.Parse(row.Cells[1].Value.ToString()));
+                    row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml(warna);
+                    //MessageBox.Show(row.Cells[0].Value.ToString());
+                    //string idstr = row.Cells[0].Value.ToString();
+                    //int id = Convert.ToInt32(idstr);
+                    //using (var db = new DuitDBModel())
+                    //{
+                    //    var getTipe = db.Transaksis.SingleOrDefault(item => item.Id == id);
+                    //    string warna = ConvertTipeKeWarna(getTipe.Tipe);
+                    //    color = ColorTranslator.FromHtml(warna);
+                    //}
+                    //row.DefaultCellStyle.BackColor = color;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
         }
         private void DisplaySaldo()
         {
@@ -122,7 +124,7 @@ namespace DuitTracker
                 lblNilaiTotalPemasukan.Text = totalPemasukan.Rows[0][0].ToString();
                 lblNilaiTotalPengeluaran.Text = totalPengeluaran.Rows[0][0].ToString();
                 //MessageBox.Show(totalPemasukan.Rows[0][0].ToString());
-                lblNilaiSaldo.Text = (int.Parse(lblNilaiTotalPemasukan.Text)- int.Parse(lblNilaiTotalPengeluaran.Text)).ToString();
+                lblNilaiSaldo.Text = (int.Parse(lblNilaiTotalPemasukan.Text) + int.Parse(lblNilaiTotalPengeluaran.Text)).ToString();
                 //conn.Close();
             }
             catch (Exception ex)
@@ -135,17 +137,21 @@ namespace DuitTracker
         {
             if (tbNominal.Text != "" || cmbTipe.Text != "" ||cmbSubtipe.Text !="" || dtpTanggal.Value.ToString() != "")
             {
+                int nominal = int.Parse(tbNominal.Text);
+                if (cmbTipe.SelectedIndex == 1)
+                    nominal = (-1) * nominal;
                 try
                 {
                     using(var db = new DuitDBModel())
                     {
                         transaksi = new Transaksi()
                         {
-                            Nominal = int.Parse(tbNominal.Text),
+                            Nominal = nominal,
                             Tipe = cmbTipe.SelectedIndex,
                             Subtipe = cmbSubtipe.Text,
                             Tanggal = dtpTanggal.Value.Date,
                         };
+                        
                         db.Transaksis.Add(transaksi);
                         db.SaveChanges();
                     }
@@ -218,17 +224,25 @@ namespace DuitTracker
 
         private string ConvertTipeKeWarna(int tipe)
         {
-            if (tipe == 0)
-                return "#55efc4";
-            else
+            if (tipe < 0)
                 return "#ff7675";
+            else
+                return "#55efc4";
+        }
+
+        private void btnBulanSebelum_Click(object sender, EventArgs e)
+        {
+            currentView = currentView.AddMonths(-1);
+            lblBulan.Text = currentView.ToString("MMM, yyyy");
+            UpdateBtnKeBulanSkrg();
+            UpdateControls();
         }
 
         private void btnBulanSetelah_Click(object sender, EventArgs e)
         {
             currentView = currentView.AddMonths(1);
             lblBulan.Text = currentView.ToString("MMM, yyyy");
-            btnKeBulanSkrgKiri.Enabled = true;
+            UpdateBtnKeBulanSkrg();
             UpdateControls();
         }
 
@@ -236,7 +250,7 @@ namespace DuitTracker
         {
             currentView = today;
             lblBulan.Text = currentView.ToString("MMM, yyyy");
-            btnKeBulanSkrgKiri.Enabled = false;
+            UpdateBtnKeBulanSkrg();
             UpdateControls();
         }
 
@@ -244,8 +258,21 @@ namespace DuitTracker
         {
             currentView = today;
             lblBulan.Text = currentView.ToString("MMM, yyyy");
-            btnKeBulanSkrgKanan.Enabled = false;
+            UpdateBtnKeBulanSkrg();
             UpdateControls();
+        }
+
+        private void UpdateBtnKeBulanSkrg()
+        {
+            if (currentView == today)
+            {
+                btnKeBulanSkrgKiri.Enabled = false;
+                btnKeBulanSkrgKanan.Enabled = false;
+            }
+            else if(currentView < today)
+                btnKeBulanSkrgKanan.Enabled = true;
+            else
+                btnKeBulanSkrgKiri.Enabled = true;
         }
 
         private void dgvSejarahTransaksi_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -282,14 +309,6 @@ namespace DuitTracker
         private void btnHapus_Click(object sender, EventArgs e)
         {
             HapusTransaksi();
-        }
-
-        private void btnBulanSebelum_Click(object sender, EventArgs e)
-        {
-            currentView = currentView.AddMonths(-1);
-            lblBulan.Text = currentView.ToString("MMM, yyyy");
-            btnKeBulanSkrgKanan.Enabled = true;
-            UpdateControls();
         }
 
         private void cmbTipe_SelectedIndexChanged(object sender, EventArgs e)
