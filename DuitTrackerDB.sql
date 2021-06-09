@@ -1,0 +1,9 @@
+CREATE DATABASE DuitTrackerDB;
+USE DuitTrackerDB;
+CREATE TABLE Transaksi(
+ID_Transaksi INT IDENTITY(1,1) PRIMARY KEY,
+Nominal BIGINT NOT NULL,
+Tipe VARCHAR(12) NOT NULL,
+Keterangan VARCHAR(200),
+Tanggal DATETIME
+);
