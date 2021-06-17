@@ -407,9 +407,11 @@ namespace DuitTracker
             this.Controls.Add(this.dgvSejarahTransaksi);
             this.Controls.Add(this.gbBuatBaru);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Duit Tracker";
             this.gbBuatBaru.ResumeLayout(false);
             this.gbBuatBaru.PerformLayout();
             this.panel3.ResumeLayout(false);

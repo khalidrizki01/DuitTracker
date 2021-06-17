@@ -52,6 +52,10 @@ namespace DuitTracker
             cmbSubtipe.SelectedIndex = -1;
             tbKeterangan.Text = "";
             dtpTanggal.Value = today;
+
+            mode = Mode.Buat;
+            btnBuatTransaksi.Text = "Buat";
+            btnHapus.Enabled = false;
         }
         private void DisplayDataGridView()
         {
@@ -76,19 +80,8 @@ namespace DuitTracker
             {
                 try
                 {
-                    //Color color;
                     string warna = ConvertTipeKeWarna(int.Parse(row.Cells[1].Value.ToString()));
                     row.DefaultCellStyle.BackColor = ColorTranslator.FromHtml(warna);
-                    //MessageBox.Show(row.Cells[0].Value.ToString());
-                    //string idstr = row.Cells[0].Value.ToString();
-                    //int id = Convert.ToInt32(idstr);
-                    //using (var db = new DuitDBModel())
-                    //{
-                    //    var getTipe = db.Transaksis.SingleOrDefault(item => item.Id == id);
-                    //    string warna = ConvertTipeKeWarna(getTipe.Tipe);
-                    //    color = ColorTranslator.FromHtml(warna);
-                    //}
-                    //row.DefaultCellStyle.BackColor = color;
                 }
                 catch (Exception ex)
                 {
@@ -123,9 +116,7 @@ namespace DuitTracker
 
                 lblNilaiTotalPemasukan.Text = totalPemasukan.Rows[0][0].ToString();
                 lblNilaiTotalPengeluaran.Text = totalPengeluaran.Rows[0][0].ToString();
-                //MessageBox.Show(totalPemasukan.Rows[0][0].ToString());
                 lblNilaiSaldo.Text = (int.Parse(lblNilaiTotalPemasukan.Text) + int.Parse(lblNilaiTotalPengeluaran.Text)).ToString();
-                //conn.Close();
             }
             catch (Exception ex)
             {
@@ -135,36 +126,39 @@ namespace DuitTracker
 
         private void BuatTransaksi()
         {
-            if (tbNominal.Text != "" || cmbTipe.Text != "" ||cmbSubtipe.Text !="" || dtpTanggal.Value.ToString() != "")
+            if (tbNominal.Text == "" || cmbTipe.Text == "" ||cmbSubtipe.Text =="" || dtpTanggal.Value.ToString() == "")
+            {
+                MessageBox.Show("Kolom Nominal, Tipe, Subtipe dan Tanggal harus terisi");
+                
+            }
+            else
             {
                 int nominal = int.Parse(tbNominal.Text);
                 if (cmbTipe.SelectedIndex == 1)
                     nominal = (-1) * nominal;
                 try
                 {
-                    using(var db = new DuitDBModel())
+                    using (var db = new DuitDBModel())
                     {
                         transaksi = new Transaksi()
                         {
                             Nominal = nominal,
                             Tipe = cmbTipe.SelectedIndex,
                             Subtipe = cmbSubtipe.Text,
+                            Keterangan = tbKeterangan.Text,
                             Tanggal = dtpTanggal.Value.Date,
                         };
-                        
+
                         db.Transaksis.Add(transaksi);
                         db.SaveChanges();
                     }
+                    //currentView = dtpTanggal.Value;
                     UpdateControls();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Kolom Nominal, Tipe, Subtipe dan Tanggal harus terisi");
             }
         }
 
@@ -174,6 +168,9 @@ namespace DuitTracker
             {
                 try
                 {
+                    int nominal = int.Parse(tbNominal.Text);
+                    if (cmbTipe.SelectedIndex == 1)
+                        nominal = (-1) * nominal;
                     using (var db = new DuitDBModel())
                     {
                         var updatean = db.Transaksis.SingleOrDefault(item => item.Id == transaksi.Id);
@@ -217,9 +214,11 @@ namespace DuitTracker
 
         private void UpdateControls()
         {
+            
             Clear();
             DisplayDataGridView();
             DisplaySaldo();
+            //UpdateNavigasiBulan();
         }
 
         private string ConvertTipeKeWarna(int tipe)
@@ -234,7 +233,7 @@ namespace DuitTracker
         {
             currentView = currentView.AddMonths(-1);
             lblBulan.Text = currentView.ToString("MMM, yyyy");
-            UpdateBtnKeBulanSkrg();
+            UpdateNavigasiBulan();
             UpdateControls();
         }
 
@@ -242,7 +241,7 @@ namespace DuitTracker
         {
             currentView = currentView.AddMonths(1);
             lblBulan.Text = currentView.ToString("MMM, yyyy");
-            UpdateBtnKeBulanSkrg();
+            UpdateNavigasiBulan();
             UpdateControls();
         }
 
@@ -250,7 +249,7 @@ namespace DuitTracker
         {
             currentView = today;
             lblBulan.Text = currentView.ToString("MMM, yyyy");
-            UpdateBtnKeBulanSkrg();
+            UpdateNavigasiBulan();
             UpdateControls();
         }
 
@@ -258,21 +257,30 @@ namespace DuitTracker
         {
             currentView = today;
             lblBulan.Text = currentView.ToString("MMM, yyyy");
-            UpdateBtnKeBulanSkrg();
+            UpdateNavigasiBulan();
             UpdateControls();
         }
 
-        private void UpdateBtnKeBulanSkrg()
+        private void UpdateNavigasiBulan()
         {
             if (currentView == today)
             {
+                lblBulan.Text = "Bulan Ini";
                 btnKeBulanSkrgKiri.Enabled = false;
                 btnKeBulanSkrgKanan.Enabled = false;
             }
             else if(currentView < today)
+            {
+                //dtpTanggal.Value = dtpTanggal.Value.AddMonths(-1);
                 btnKeBulanSkrgKanan.Enabled = true;
+                //MessageBox.Show(dtpTanggal.Value.ToString());
+            }
             else
+            {
+                //dtpTanggal.Value = dtpTanggal.Value.AddMonths(1);
                 btnKeBulanSkrgKiri.Enabled = true;
+            }
+                
         }
 
         private void dgvSejarahTransaksi_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -287,6 +295,7 @@ namespace DuitTracker
                     Nominal = transaksiTerpilih.Nominal,
                     Tipe = transaksiTerpilih.Tipe,
                     Subtipe = transaksiTerpilih.Subtipe,
+                    Keterangan = transaksiTerpilih.Keterangan,
                     Tanggal = transaksiTerpilih.Tanggal
                 };
             }
@@ -314,7 +323,7 @@ namespace DuitTracker
         private void cmbTipe_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbTipe.SelectedIndex == 0)
-                cmbSubtipe.DataSource = new string[] { "Uang Jajan", "Penghargaan", "Penghasilan", "Hibah", "Lainnya" };
+                cmbSubtipe.DataSource = new string[] { "Uang Saku Bulanan", "Penghargaan", "Penghasilan", "Hibah", "Lainnya" };
             else
                 cmbSubtipe.DataSource = new string[] { "Makan", "Tagihan", "Transportasi", "Belanja", "Teman/Pasangan", "Hiburan", "Travel", "Kesehatan", "Hadiah/Donasi", "Keluarga", "Pendidikan", "Investasi", "Lainnya"};
         }
